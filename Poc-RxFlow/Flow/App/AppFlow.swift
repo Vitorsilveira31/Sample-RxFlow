@@ -1,5 +1,5 @@
 //
-//  AppCoordinator.swift
+//  AppFlow.swift
 //  Poc-RxFlow
 //
 //  Created by Vitor Silveira on 14/05/19.
@@ -11,8 +11,13 @@ import RxFlow
 
 enum AppStep: Step {
     case start
-    case detail
-    case handle(host: String, parameters: [String : String])
+    case detail(login: String)
+    case handle(host: Host, parameters: [String : String])
+}
+
+enum Host: String {
+    case start = "start"
+    case detail = "detail"
 }
 
 class AppFlow: Flow {
@@ -29,8 +34,8 @@ class AppFlow: Flow {
         switch step {
         case .start:
             return startFlow()
-        case .detail:
-            return detailFlow()
+        case .detail(let login):
+            return detailFlow(login: login)
         case .handle(let host, let parameters):
             return handleUrl(with: host, parameters: parameters)
         }
@@ -43,18 +48,17 @@ class AppFlow: Flow {
         return .one(flowContributor: .contribute(withNextPresentable: viewController, withNextStepper: viewController.viewModel))
     }
     
-    func detailFlow() -> FlowContributors {
-        let viewController = DetailViewController.instantiate(with: DetailViewModel())
-        
-        self.rootViewController.pushViewController(viewController, animated: true)
-        return .one(flowContributor: .contribute(withNextPresentable: viewController, withNextStepper: viewController.viewModel))
+    func detailFlow(login: String) -> FlowContributors {
+        let flow = DetailFlow(rootViewController)
+        return .one(flowContributor: .contribute(withNextPresentable: flow, withNextStepper: OneStepper(withSingleStep: DetailStep.detail(login: login))))
     }
     
-    func handleUrl(with host: String, parameters: [String : String]) -> FlowContributors {
-        // TODO
-        let viewController = DetailViewController.instantiate(with: DetailViewModel())
-        
-        self.rootViewController.pushViewController(viewController, animated: true)
-        return .one(flowContributor: .contribute(withNextPresentable: viewController, withNextStepper: viewController.viewModel))
+    func handleUrl(with host: Host, parameters: [String : String]) -> FlowContributors {
+        switch host {
+        case .start:
+            return .none
+        case .detail:
+            return detailFlow(login: parameters["login"] ?? "")
+        }
     }
 }

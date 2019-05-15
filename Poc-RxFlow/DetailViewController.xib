@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="Poc_RxFlow" customModuleProvider="target">
             <connections>
+                <outlet property="userLabel" destination="TLL-Vg-5nd" id="cEO-uR-JPP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +20,27 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="0.20691466359999999" blue="0.87395600640000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bem vindo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqf-wx-vDe">
+                    <rect key="frame" x="129" y="429" width="156" height="38.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usuario" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLL-Vg-5nd">
+                    <rect key="frame" x="182.5" y="487.5" width="49" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="TLL-Vg-5nd" firstAttribute="top" secondItem="Qqf-wx-vDe" secondAttribute="bottom" constant="20" id="2nI-9y-H55"/>
+                <constraint firstItem="Qqf-wx-vDe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EYU-l0-gvU"/>
+                <constraint firstItem="Qqf-wx-vDe" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TuJ-th-7dd"/>
+                <constraint firstItem="TLL-Vg-5nd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sdI-lG-MGk"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>

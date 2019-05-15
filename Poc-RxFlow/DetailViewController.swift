@@ -10,19 +10,23 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    static func instantiate(with viewModel: DetailViewModel) -> DetailViewController {
+    static func instantiate(with viewModel: DetailViewModel, login: String) -> DetailViewController {
         let vc = DetailViewController(nibName: "DetailViewController", bundle: nil)
         vc.viewModel = viewModel
+        vc.login = login
         
         return vc
     }
     
+    @IBOutlet weak var userLabel: UILabel!
+    
     var viewModel: DetailViewModel!
+    var login: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        userLabel.text = login
     }
 
 }

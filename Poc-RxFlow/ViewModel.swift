@@ -16,7 +16,7 @@ class ViewModel: NSObject, Stepper {
     
     public func doLogin(login: String, password: String) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.steps.accept(AppStep.detail)
+            self.steps.accept(AppStep.detail(login: login))
         }
     }
 }
